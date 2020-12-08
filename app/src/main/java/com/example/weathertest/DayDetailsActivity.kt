@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.example.weathertest.models.WeatherHistoryModel
 import com.example.weathertest.services.WeatherService
 import retrofit2.Call
@@ -25,11 +26,10 @@ class DayDetailsActivity : AppCompatActivity() {
         minTV = findViewById(R.id.min)
         maxTV = findViewById(R.id.max)
 
-
         val day = intent.getStringExtra("date")
         if (day != null) {
             updateValues(day)
-            headingTV.text = "Date: " + day
+            headingTV.text = applicationContext.getString(R.string.date, day)
         }
     }
 
@@ -44,7 +44,7 @@ class DayDetailsActivity : AppCompatActivity() {
                 if (response.body() != null) {
                     val historyModel = response.body()!!
                     val day = historyModel.forecast.forecastday[0].day
-                    Log.i("weatherapi", "code: " + response.code() + ", avg: " + day.avgtemp_c + ", mac: " + day.maxtemp_c + ", min: " + day.mintemp_c)
+                    Log.i("weatherapi", "code: " + response.code() + ", avg: " + day.avgtemp_c + ", max: " + day.maxtemp_c + ", min: " + day.mintemp_c)
 
                     minTV.text = day.mintemp_c.toString()
                     maxTV.text = day.maxtemp_c.toString()
@@ -53,8 +53,8 @@ class DayDetailsActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<WeatherHistoryModel>, t: Throwable) {
                 Log.i("weatherapi", "ERROR: " + t.message)
+                Toast.makeText(applicationContext, "Error " + t.message, Toast.LENGTH_SHORT).show()
             }
-
         })
 
     }
