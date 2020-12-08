@@ -8,4 +8,6 @@ App shows weather updates for the last 5 days including today. The data is colle
 + WeatherAPI
 
 ### And the landing UI looks like this:
+Click on a date to get detailed weather information for that day.
+
 ![Screenshot](https://github.com/tariqul-islam1/WeatherTest/blob/master/img1.png)
