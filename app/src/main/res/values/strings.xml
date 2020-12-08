@@ -1,0 +1,5 @@
+<resources>
+	<string name="app_name">WeatherTest</string>
+	<string name="weather_of_the_past_5_days">Weather of the past 5 days</string>
+	<string name="from_to_text">From %1$s to %2$s:</string>
+</resources>

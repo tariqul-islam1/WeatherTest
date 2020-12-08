@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="defaultCity">Gothenburg</string>
+	<string name="APIKey">558be982c9fc437aa84154822200412</string>
+</resources>
