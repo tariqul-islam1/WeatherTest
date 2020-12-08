@@ -2,4 +2,5 @@
 <resources>
 	<string name="defaultCity">Gothenburg</string>
 	<string name="APIKey">558be982c9fc437aa84154822200412</string>
+	<string name="weatherDetails">Weather details</string>
 </resources>
