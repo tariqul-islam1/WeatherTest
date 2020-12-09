@@ -13,4 +13,4 @@ Download the APK file [here](https://github.com/tariqul-islam1/WeatherTest/blob/
 ### And the landing UI looks like this:
 Click on a date to get detailed weather information for that day.
 
-![Screenshot](https://github.com/tariqul-islam1/WeatherTest/blob/master/img1.png)
+![Screenshot](https://github.com/tariqul-islam1/WeatherTest/blob/master/img3.png)
