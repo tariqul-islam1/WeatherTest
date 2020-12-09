@@ -17,17 +17,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.ceil
+import kotlin.math.floor
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var minTV: TextView
     lateinit var maxTV: TextView
-    lateinit var avgTV: TextView
+    private lateinit var avgTV: TextView
+    lateinit var medTV: TextView
     lateinit var fromToTV: TextView
     var minT = 99.0
     var maxT = -99.0
     var avgT = 0.0
     var numberOfDays = 0.0
+    var dailyTemps = DoubleArray(5)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         minTV = findViewById(R.id.min)
         maxTV = findViewById(R.id.max)
         avgTV = findViewById(R.id.avg)
+        medTV = findViewById(R.id.med)
         fromToTV = findViewById(R.id.fromTo)
 
         fromToTV.text = applicationContext.getString(R.string.from_to_text, getDaysAgo(4), getDaysAgo(0))
@@ -78,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     if (minT > day.mintemp_c) minT = day.mintemp_c
                     if (maxT < day.maxtemp_c) maxT = day.maxtemp_c
                     avgT += day.avgtemp_c
+                    dailyTemps[numberOfDays.toInt() - 1] = day.avgtemp_c
                     updateViews()
                 }
             }
@@ -93,7 +99,6 @@ class MainActivity : AppCompatActivity() {
     private fun showDays(daysRecyclerView: RecyclerView) {
         val dates = ArrayList<String>()
         for (i in 0 .. 4) dates.add(getDaysAgo(i))
-
         val adapter = DaysAdapter(dates)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         daysRecyclerView.setLayoutManager(layoutManager)
@@ -104,6 +109,8 @@ class MainActivity : AppCompatActivity() {
         minTV.text = String.format("%.2f", minT)
         maxTV.text = String.format("%.2f", maxT)
         avgTV.text = String.format("%.2f", (avgT / numberOfDays))
+        Arrays.sort(dailyTemps)
+        medTV.text = String.format("%.2f", (dailyTemps[ceil(dailyTemps.size.toDouble() / 2).toInt()]))
     }
 
     private fun getDaysAgo(daysAgo: Int): String {

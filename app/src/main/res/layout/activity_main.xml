@@ -87,6 +87,26 @@
             android:text="15"
             android:textSize="14sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" | "
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Median: "
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/med"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <View
